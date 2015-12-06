@@ -1,0 +1,16 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  cache_directories:
+    - "~/docker"
+  override:
+    - docker info
+    - if [[ -e ~/docker/ubuntu.tar ]]; then docker load --input ~/docker/ubuntu.tar; fi
+    - docker pull ubuntu:15.10
+    - mkdir -p ~/docker; docker save ubuntu:15.10 > ~/docker/ubuntu.tar
+
+test:
+  override:
+    - docker build -t dlsniper/docker-intellij .
