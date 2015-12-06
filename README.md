@@ -15,7 +15,7 @@ The image contains the following software:
 By running the following command you'll be able to start the container
 
 ```bash
-docker run -ti --rm \
+docker run -tdi \
            -e DISPLAY=${DISPLAY} \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
            -v ${HOME}/.IdeaIC15_docker:/home/developer/.IdeaIC15 \
@@ -45,7 +45,7 @@ For an example script to launch this, see below:
 GOPATH=/path/to/your/GOPATH
 PREF_DIR=${HOME}/.IdeaIC15_docker
 
-docker run -ti --rm \
+docker run -tdi \
            -e DISPLAY=${DISPLAY} \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
            -v {$PREF_DIR}:/home/developer/.IdeaIC15 \
