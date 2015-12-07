@@ -20,7 +20,7 @@ docker run -tdi \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
            -v ${HOME}/.IdeaIC15_docker:/home/developer/.IdeaIC15 \
            -v ${GOPATH}:/home/developer/go \
-           dlsniper/intellij-idea
+           dlsniper/docker-intellij
 ```
 
 The command will do the following:
@@ -50,7 +50,7 @@ docker run -tdi \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
            -v {$PREF_DIR}:/home/developer/.IdeaIC15 \
            -v ${GOPATH}:/home/developer/go \
-           dlsniper/intellij-idea
+           dlsniper/docker-intellij
 ```
 
 ## Updating the container
@@ -58,7 +58,7 @@ docker run -tdi \
 To update the container, simply run:
 
 ```shell
-docker pull dlsniper/intellij-idea
+docker pull dlsniper/docker-intellij
 ```
 
 Each of the plugins can be updated individually at any time, and other plugins
