@@ -42,7 +42,7 @@ RUN chmod +x /usr/local/bin/intellij && \
     chown developer:developer -R /home/developer/.IdeaIC15
 
 RUN echo 'Downloading IntelliJ IDEA' && \
-    wget https://download.jetbrains.com/idea/ideaIC-15.0.1.tar.gz -O /tmp/intellij.tar.gz -q && \
+    wget https://download.jetbrains.com/idea/ideaIC-15.0.2.tar.gz -O /tmp/intellij.tar.gz -q && \
     echo 'Installing IntelliJ IDEA' && \
     mkdir -p /opt/intellij && \
     tar -xf /tmp/intellij.tar.gz --strip-components=1 -C /opt/intellij && \

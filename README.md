@@ -4,7 +4,7 @@
 
 The image contains the following software:
 
-- [IntelliJ IDEA Community 15.0.1](https://www.jetbrains.com/idea/)
+- [IntelliJ IDEA Community 15.0.2](https://www.jetbrains.com/idea/)
 - [Go 1.5.2](https://golang.org/)
 - [Go plugin (nightly, 0.10.749)](https://plugins.jetbrains.com/plugin/5047)
 - [.ignore plugin (release, 1.2)](https://plugins.jetbrains.com/plugin/7495)
