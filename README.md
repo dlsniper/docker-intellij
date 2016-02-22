@@ -48,7 +48,7 @@ PREF_DIR=${HOME}/.IdeaIC15_docker
 docker run -tdi \
            -e DISPLAY=${DISPLAY} \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
-           -v {$PREF_DIR}:/home/developer/.IdeaIC15 \
+           -v ${PREF_DIR}:/home/developer/.IdeaIC15 \
            -v ${GOPATH}:/home/developer/go \
            dlsniper/docker-intellij
 ```
