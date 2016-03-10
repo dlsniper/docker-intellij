@@ -49,7 +49,7 @@ RUN echo 'Downloading IntelliJ IDEA' && \
     rm /tmp/intellij.tar.gz
 
 RUN echo 'Downloading Go 1.6.0' && \
-    wget https://storage.googleapis.com/golang/go1.6.0.linux-amd64.tar.gz -O /tmp/go.tar.gz -q && \
+    wget https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz -O /tmp/go.tar.gz -q && \
     echo 'Installing Go 1.6.0' && \
     sudo tar -zxf /tmp/go.tar.gz -C /usr/local/ && \
     rm -f /tmp/go.tar.gz
