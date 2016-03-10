@@ -42,29 +42,26 @@ RUN chmod +x /usr/local/bin/intellij && \
     chown developer:developer -R /home/developer/.IdeaIC15
 
 RUN echo 'Downloading IntelliJ IDEA' && \
-    wget https://download.jetbrains.com/idea/ideaIC-15.0.2.tar.gz -O /tmp/intellij.tar.gz -q && \
+    wget https://download.jetbrains.com/idea/ideaIC-15.0.4.tar.gz -O /tmp/intellij.tar.gz -q && \
     echo 'Installing IntelliJ IDEA' && \
     mkdir -p /opt/intellij && \
     tar -xf /tmp/intellij.tar.gz --strip-components=1 -C /opt/intellij && \
     rm /tmp/intellij.tar.gz
 
-RUN echo 'Downloading Go 1.5.2' && \
-    wget https://storage.googleapis.com/golang/go1.5.2.linux-amd64.tar.gz -O /tmp/go.tar.gz -q && \
-    echo 'Installing Go 1.5.2' && \
+RUN echo 'Downloading Go 1.6.0' && \
+    wget https://storage.googleapis.com/golang/go1.6.0.linux-amd64.tar.gz -O /tmp/go.tar.gz -q && \
+    echo 'Installing Go 1.6.0' && \
     sudo tar -zxf /tmp/go.tar.gz -C /usr/local/ && \
     rm -f /tmp/go.tar.gz
 
 RUN echo 'Installing Go plugin' && \
-    wget https://plugins.jetbrains.com/files/5047/22601/Go-0.10.749.zip -O /home/developer/.IdeaIC15/config/plugins/go.zip -q && \
+    wget https://plugins.jetbrains.com/files/5047/24428/Go-0.10.1164.zip -O /home/developer/.IdeaIC15/config/plugins/go.zip -q && \
     cd /home/developer/.IdeaIC15/config/plugins/ && \
     unzip -q go.zip && \
     rm go.zip
 
-RUN echo 'Installing .ignore plugin' && \
-    wget https://plugins.jetbrains.com/files/7495/20861/idea-gitignore.jar -O /home/developer/.IdeaIC15/config/plugins/idea-gitignore.jar -q
-
 RUN echo 'Installing Markdown plugin' && \
-    wget https://plugins.jetbrains.com/files/7793/22165/markdown.zip -O markdown.zip -q && \
+    wget https://plugins.jetbrains.com/files/7793/23750/markdown.zip -O markdown.zip -q && \
     unzip -q markdown.zip && \
     rm markdown.zip
 

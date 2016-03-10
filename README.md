@@ -4,11 +4,10 @@
 
 The image contains the following software:
 
-- [IntelliJ IDEA Community 15.0.2](https://www.jetbrains.com/idea/)
-- [Go 1.5.2](https://golang.org/)
-- [Go plugin (nightly, 0.10.749)](https://plugins.jetbrains.com/plugin/5047)
-- [.ignore plugin (release, 1.2)](https://plugins.jetbrains.com/plugin/7495)
-- [Markdown plugin (release, 8.0.0.20151106)](https://plugins.jetbrains.com/plugin/5970)
+- [IntelliJ IDEA Community 15.0.4](https://www.jetbrains.com/idea/)
+- [Go 1.6.0](https://golang.org/)
+- [Go plugin (nightly, 0.10.1164)](https://plugins.jetbrains.com/plugin/5047)
+- [Markdown plugin (release, 8.0.0.20160127.143)](https://plugins.jetbrains.com/plugin/7793)
 
 ## Running
 
@@ -16,6 +15,8 @@ By running the following command you'll be able to start the container
 
 ```bash
 docker run -tdi \
+           --net="host" \
+           -privileged=true \
            -e DISPLAY=${DISPLAY} \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
            -v ${HOME}/.IdeaIC15_docker:/home/developer/.IdeaIC15 \
@@ -46,6 +47,8 @@ GOPATH=/path/to/your/GOPATH
 PREF_DIR=${HOME}/.IdeaIC15_docker
 
 docker run -tdi \
+           --net="host" \
+           -privileged=true \
            -e DISPLAY=${DISPLAY} \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
            -v {$PREF_DIR}:/home/developer/.IdeaIC15 \
@@ -71,9 +74,9 @@ updated.
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Florin Patan
+Copyright (c) 2016 Florin Patan
 
-If you want to read the full license text, please see the [LICENSE](LICENSE) file
+If you want to read the full license text, please see the [LICENSE](https://github.com/dlsniper/docker-intellij/blob/master/LICENSE) file
 in this directory.
 
 IntelliJ IDEA and all the other plugins are or may be trademarks of their
