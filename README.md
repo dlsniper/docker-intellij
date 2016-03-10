@@ -11,12 +11,15 @@ The image contains the following software:
 
 ## Running
 
+**NOTE**
+As of Docker 1.10(?) you need to specify full paths for mounts.
+
 By running the following command you'll be able to start the container
 
 ```bash
 docker run -tdi \
            --net="host" \
-           -privileged=true \
+           --privileged=true \
            -e DISPLAY=${DISPLAY} \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
            -v ${HOME}/.IdeaIC15_docker:/home/developer/.IdeaIC15 \
@@ -48,7 +51,7 @@ PREF_DIR=${HOME}/.IdeaIC15_docker
 
 docker run -tdi \
            --net="host" \
-           -privileged=true \
+           --privileged=true \
            -e DISPLAY=${DISPLAY} \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
            -v ${PREF_DIR}:/home/developer/.IdeaIC15 \
