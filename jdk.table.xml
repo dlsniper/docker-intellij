@@ -1,9 +1,9 @@
 <application>
   <component name="ProjectJdkTable">
     <jdk version="2">
-      <name value="Go 1.5.2" />
+      <name value="Go 1.6" />
       <type value="Go SDK" />
-      <version value="1.5.2" />
+      <version value="1.6" />
       <homePath value="/usr/local/go" />
       <roots>
         <annotationsPath>
