@@ -4,10 +4,10 @@
 
 The image contains the following software:
 
-- [IntelliJ IDEA Community 15.0.4](https://www.jetbrains.com/idea/)
-- [Go 1.6.0](https://golang.org/)
-- [Go plugin (nightly, 0.10.1164)](https://plugins.jetbrains.com/plugin/5047)
-- [Markdown plugin (release, 8.0.0.20160127.143)](https://plugins.jetbrains.com/plugin/7793)
+- [IntelliJ IDEA Community 2016.1.3](https://www.jetbrains.com/idea/)
+- [Go 1.6.2](https://golang.org/)
+- [Go plugin (nightly, 0.11.1474)](https://plugins.jetbrains.com/plugin/5047)
+- [Markdown plugin (release, 2016.1.20160405)](https://plugins.jetbrains.com/plugin/7793)
 
 ## Running
 
@@ -22,14 +22,14 @@ docker run -tdi \
            --privileged=true \
            -e DISPLAY=${DISPLAY} \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
-           -v ${HOME}/.IdeaIC15_docker:/home/developer/.IdeaIC15 \
+           -v ${HOME}/.IdeaIC2016.1_docker:/home/developer/.IdeaIC2016.1 \
            -v ${GOPATH}:/home/developer/go \
            dlsniper/docker-intellij
 ```
 
 The command will do the following:
 
-- save the IDE preferences into `<your-HOME-dir>/.IdeaIC15_docker`
+- save the IDE preferences into `<your-HOME-dir>/.IdeaIC2016.1_docker`
 - mounts the GOPATH from your computer to the one in the container. This
 assumes you have a single directory. If you have multiple directories in your
 GOPATH, then see below how you can customize this to run correctly.
@@ -47,14 +47,14 @@ For an example script to launch this, see below:
 #!/usr/bin/env bash
 
 GOPATH=/path/to/your/GOPATH
-PREF_DIR=${HOME}/.IdeaIC15_docker
+PREF_DIR=${HOME}/.IdeaIC2016.1_docker
 
 docker run -tdi \
            --net="host" \
            --privileged=true \
            -e DISPLAY=${DISPLAY} \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
-           -v ${PREF_DIR}:/home/developer/.IdeaIC15 \
+           -v ${PREF_DIR}:/home/developer/.IdeaIC2016.1 \
            -v ${GOPATH}:/home/developer/go \
            dlsniper/docker-intellij
 ```

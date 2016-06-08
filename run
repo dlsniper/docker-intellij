@@ -1,33 +1,30 @@
 #!/usr/bin/env bash
 
 function delayedPluginInstall {
-    sudo mkdir -p /home/developer/.IdeaIC15/config/plugins
-    sudo mkdir -p /home/developer/.IdeaIC15/config/options
-    sudo chown developer:developer -R /home/developer/.IdeaIC15
+    sudo mkdir -p /home/developer/.IdeaIC2016.1/config/plugins
+    sudo mkdir -p /home/developer/.IdeaIC2016.1/config/options
+    sudo chown developer:developer -R /home/developer/.IdeaIC2016.1
 
-    cd /home/developer/.IdeaIC15/config/plugins/
+    cd /home/developer/.IdeaIC2016.1/config/plugins/
 
     echo 'Installing Go plugin'
-    wget https://plugins.jetbrains.com/files/5047/22601/Go-0.10.749.zip -O go.zip -q && unzip -q go.zip && rm go.zip
-
-    echo 'Installing .ignore plugin'
-    wget https://plugins.jetbrains.com/files/7495/20861/idea-gitignore.jar -O /home/developer/.IdeaIC15/config/plugins/idea-gitignore.jar -q
+    wget https://plugins.jetbrains.com/files/5047/26334/Go-0.11.1474.zip -O go.zip -q && unzip -q go.zip && rm go.zip
 
     echo 'Installing Markdown support plugin'
-    wget https://plugins.jetbrains.com/files/7793/22165/markdown.zip -O markdown.zip -q && unzip -q markdown.zip && rm markdown.zip
+    wget https://plugins.jetbrains.com/files/7793/25156/markdown-2016.1.20160405.zip -O markdown.zip -q && unzip -q markdown.zip && rm markdown.zip
 
     # Adding the predefined preferences to IDEA
-    cp /home/developer/.jdk.table.xml /home/developer/.IdeaIC15/config/options/jdk.table.xml
+    cp /home/developer/.jdk.table.xml /home/developer/.IdeaIC2016.1/config/options/jdk.table.xml
 }
 
-if [ ! -d /home/developer/.IdeaIC15/config/plugins/Go ]; then
+if [ ! -d /home/developer/.IdeaIC2016.1/config/plugins/Go ]; then
     # We are running with a non-Docker contained volume for IntelliJ prefs so we need to setup the plugin again
     delayedPluginInstall
 fi
 
-if [ -d /home/developer/.IdeaIC15 ]; then
+if [ -d /home/developer/.IdeaIC2016.1 ]; then
     # Ensure proper permissions
-    sudo chown developer:developer -R /home/developer/.IdeaIC15
+    sudo chown developer:developer -R /home/developer/.IdeaIC2016.1
 fi
 
 exec /opt/intellij/bin/idea.sh

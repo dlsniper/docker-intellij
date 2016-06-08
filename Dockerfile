@@ -1,18 +1,15 @@
-FROM ubuntu:15.10
+FROM ubuntu:16.04
+
 MAINTAINER Florin Patan "florinpatan@gmail.com"
 
+ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
 RUN sed 's/main$/main universe/' -i /etc/apt/sources.list && \
     apt-get update -qq && \
     echo 'Installing OS dependencies' && \
     apt-get install -qq -y --fix-missing sudo software-properties-common git libxext-dev libxrender-dev libxslt1.1 \
-        libxtst-dev libgtk2.0-0 libcanberra-gtk-module unzip && \
-    add-apt-repository ppa:webupd8team/java -y && \
-    apt-get update -qq && \
-    echo 'Installing JAVA 8' && \
-    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
-    apt-get install -qq -y --fix-missing oracle-java8-installer && \
+        libxtst-dev libgtk2.0-0 libcanberra-gtk-module unzip wget && \
     echo 'Cleaning up' && \
     apt-get clean -qq -y && \
     apt-get autoclean -qq -y && \
@@ -30,40 +27,42 @@ RUN echo 'Creating user: developer' && \
     sudo chown root:root /usr/bin/sudo && \
     chmod 4755 /usr/bin/sudo
 
-RUN mkdir -p /home/developer/.IdeaIC15/config/options && \
-    mkdir -p /home/developer/.IdeaIC15/config/plugins
+RUN mkdir -p /home/developer/.IdeaIC2016.1/config/options && \
+    mkdir -p /home/developer/.IdeaIC2016.1/config/plugins
 
-ADD ./jdk.table.xml /home/developer/.IdeaIC15/config/options/jdk.table.xml
+ADD ./jdk.table.xml /home/developer/.IdeaIC2016.1/config/options/jdk.table.xml
 ADD ./jdk.table.xml /home/developer/.jdk.table.xml
 
 ADD ./run /usr/local/bin/intellij
 
 RUN chmod +x /usr/local/bin/intellij && \
-    chown developer:developer -R /home/developer/.IdeaIC15
+    chown developer:developer -R /home/developer/.IdeaIC2016.1
 
 RUN echo 'Downloading IntelliJ IDEA' && \
-    wget https://download.jetbrains.com/idea/ideaIC-15.0.4.tar.gz -O /tmp/intellij.tar.gz -q && \
+    wget https://download-cf.jetbrains.com/idea/ideaIC-2016.1.3.tar.gz -O /tmp/intellij.tar.gz -q && \
     echo 'Installing IntelliJ IDEA' && \
     mkdir -p /opt/intellij && \
     tar -xf /tmp/intellij.tar.gz --strip-components=1 -C /opt/intellij && \
     rm /tmp/intellij.tar.gz
 
 RUN echo 'Downloading Go 1.6.0' && \
-    wget https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz -O /tmp/go.tar.gz -q && \
+    wget https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz -O /tmp/go.tar.gz -q && \
     echo 'Installing Go 1.6.0' && \
     sudo tar -zxf /tmp/go.tar.gz -C /usr/local/ && \
     rm -f /tmp/go.tar.gz
 
 RUN echo 'Installing Go plugin' && \
-    wget https://plugins.jetbrains.com/files/5047/24428/Go-0.10.1164.zip -O /home/developer/.IdeaIC15/config/plugins/go.zip -q && \
-    cd /home/developer/.IdeaIC15/config/plugins/ && \
+    wget https://plugins.jetbrains.com/files/5047/26334/Go-0.11.1474.zip -O /home/developer/.IdeaIC2016.1/config/plugins/go.zip -q && \
+    cd /home/developer/.IdeaIC2016.1/config/plugins/ && \
     unzip -q go.zip && \
     rm go.zip
 
 RUN echo 'Installing Markdown plugin' && \
-    wget https://plugins.jetbrains.com/files/7793/23750/markdown.zip -O markdown.zip -q && \
+    wget https://plugins.jetbrains.com/files/7793/25156/markdown-2016.1.20160405.zip -O markdown.zip -q && \
     unzip -q markdown.zip && \
     rm markdown.zip
+
+RUN sudo chown developer:developer -R /home/developer
 
 USER developer
 ENV HOME /home/developer
