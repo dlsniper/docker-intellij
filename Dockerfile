@@ -27,33 +27,33 @@ RUN echo 'Creating user: developer' && \
     sudo chown root:root /usr/bin/sudo && \
     chmod 4755 /usr/bin/sudo
 
-RUN mkdir -p /home/developer/.IdeaIC2016.1/config/options && \
-    mkdir -p /home/developer/.IdeaIC2016.1/config/plugins
+RUN mkdir -p /home/developer/.IdeaIC2016.2/config/options && \
+    mkdir -p /home/developer/.IdeaIC2016.2/config/plugins
 
-ADD ./jdk.table.xml /home/developer/.IdeaIC2016.1/config/options/jdk.table.xml
+ADD ./jdk.table.xml /home/developer/.IdeaIC2016.2/config/options/jdk.table.xml
 ADD ./jdk.table.xml /home/developer/.jdk.table.xml
 
 ADD ./run /usr/local/bin/intellij
 
 RUN chmod +x /usr/local/bin/intellij && \
-    chown developer:developer -R /home/developer/.IdeaIC2016.1
+    chown developer:developer -R /home/developer/.IdeaIC2016.2
 
 RUN echo 'Downloading IntelliJ IDEA' && \
-    wget https://download-cf.jetbrains.com/idea/ideaIC-2016.1.3.tar.gz -O /tmp/intellij.tar.gz -q && \
+    wget https://download.jetbrains.com/idea/ideaIC-2016.2.tar.gz -O /tmp/intellij.tar.gz -q && \
     echo 'Installing IntelliJ IDEA' && \
     mkdir -p /opt/intellij && \
     tar -xf /tmp/intellij.tar.gz --strip-components=1 -C /opt/intellij && \
     rm /tmp/intellij.tar.gz
 
-RUN echo 'Downloading Go 1.6.0' && \
-    wget https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz -O /tmp/go.tar.gz -q && \
-    echo 'Installing Go 1.6.0' && \
+RUN echo 'Downloading Go 1.6.3' && \
+    wget https://storage.googleapis.com/golang/go1.6.3.linux-amd64.tar.gz -O /tmp/go.tar.gz -q && \
+    echo 'Installing Go 1.6.3' && \
     sudo tar -zxf /tmp/go.tar.gz -C /usr/local/ && \
     rm -f /tmp/go.tar.gz
 
 RUN echo 'Installing Go plugin' && \
-    wget https://plugins.jetbrains.com/files/5047/26334/Go-0.11.1474.zip -O /home/developer/.IdeaIC2016.1/config/plugins/go.zip -q && \
-    cd /home/developer/.IdeaIC2016.1/config/plugins/ && \
+    wget https://plugins.jetbrains.com/files/5047/27278/Go-0.12.1724.zip -O /home/developer/.IdeaIC2016.2/config/plugins/go.zip -q && \
+    cd /home/developer/.IdeaIC2016.2/config/plugins/ && \
     unzip -q go.zip && \
     rm go.zip
 
